@@ -1,18 +1,17 @@
 # SR-Snort: IPv6 Segment Routing Aware IDS/IPS
 SR-Snort is an SR-aware Intrusion Detection System (IDS)/Intrusion Prevention System (IPS). It extends the open-source implementation of Snort, so it can apply snort rules directly to inner packet of SR encapsulated traffic. It supports inner IPv4 and IPv6 packets in both passive (IDS) and inline (IPS) modes.
 
-## Design and Implementation 
-The design and implementation of SR-Snort is available [here](http://netgroup.uniroma2.it/Stefano_Salsano/papers/18-sr-snort-demo.pdf). 
-
 ## Demo
 The demo showcases the integration of SR-Snort in a SRv6 NFV Infrastructure deployed as a virtualized Linux environment.
 
 ### Topology 
-The demo is deplyed on a simple network topology composed of three Linux nodes representing the Ingress, NFV, and Egress nodes of SRv6 domain. The Ingress node is configured with an SRv6 NFV policy to steer traffic from Site A towards Site B through VNF1 and VNF2, which results in having SRv6 encapsulated packets with an SRH containing segments for the two VNFs. Node 3 is configured with SRv6 decapsulation SID to remove the SRv6 encapsulation from packets as they leave the SRv6 domain. VNF1 and VNF2 run SR-Snort in IDS mode and IPS mode respectively.
+The demo is deployed on a simple network topology composed of three Linux nodes representing the Ingress, NFV, and Egress nodes of SRv6 domain, and there's also an (SRv6 Classifier Switch)[https://github.com/guimvmatos/5g-SRv6-BMv2-Mininet], which maps some flow characteristics to a set of SIDs. The latter must be downloaded separately (here)[whereisthelink.soom) 
+
+The Ingress node sends a packet with Site B as the recipient. then the classifier, which is configured with an SRv6 NFV policy to steer traffic from Site A towards Site B through VNF1 and VNF2, maps this traffic, which results in having SRv6 encapsulated packets with an SRH containing segments for the two VNFs. Node 3 is configured with SRv6 decapsulation SID to remove the SRv6 encapsulation from packets as they leave the SRv6 domain. VNF1 and VNF2 run SR-Snort in IDS mode and IPS mode respectively.
 
 The topology for the demo is as shown below:
 
-![](./docs/demo.png)
+![](./docs/demo2.png)
 
 ### Deployment
 
@@ -23,7 +22,7 @@ Each node is deployed as a Virtual machine (VM) and running Linux kernel 4.14. V
 Clone the git repository in your machine: 
 
 ```
-$ git clone https://github.com/SRouting/SR-Snort-demo
+$ git clone https://github.com/guimvmatos/Snort-SegmentRouting.git
 ```
 
 Deploy the testbed:
