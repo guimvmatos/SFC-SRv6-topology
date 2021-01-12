@@ -28,7 +28,7 @@ $ git clone https://github.com/guimvmatos/Snort-SegmentRouting.git
 Deploy the testbed:
 
 ```
-$ cd SR-Snort-demo/
+$ cd Snort-SegmentRouting/
 $ vagrant up 
 ```
 
