@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
-                ran.vm.provision "shell", path: "config/ran.sh"
+                ran.vm.provision "shell", path: "config/config_ran.sh"
 	end
 
 	# Node NFV1 configuration
