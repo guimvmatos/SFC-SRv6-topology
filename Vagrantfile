@@ -4,11 +4,11 @@
 Vagrant.configure("2") do |config|
 	# Node RAN configuration
 	config.vm.define "ran" do |ran|
-		nfv1.vm.box = "srouting/srv6-net-prog"
-		nfv1.vm.box_version = "0.4.14"
-                nfv1.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
-		nfv1.vm.network "public_network", ip: "fc00::1", mac: "00154d000000",bridge: "vf0_0"
-		nfv1.vm.provider "virtualbox" do |virtualbox|
+		ran.vm.box = "srouting/srv6-net-prog"
+		ran.vm.box_version = "0.4.14"
+                ran.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
+		ran.vm.network "public_network", ip: "fc00::1", mac: "00154d000000",bridge: "vf0_0"
+		ran.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "512"
 			virtualbox.cpus = "1"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
@@ -49,11 +49,11 @@ Vagrant.configure("2") do |config|
 
 	# Node UPF configuration
 	config.vm.define "upf" do |upf|
-		nfv1.vm.box = "srouting/srv6-net-prog"
-		nfv1.vm.box_version = "0.4.14"
-                nfv1.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
-		nfv1.vm.network "public_network", ip: "fc00::4", mac: "00154d000003",bridge: "vf0_3"
-		nfv1.vm.provider "virtualbox" do |virtualbox|
+		upf.vm.box = "srouting/srv6-net-prog"
+		upf.vm.box_version = "0.4.14"
+                upf.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
+		upf.vm.network "public_network", ip: "fc00::4", mac: "00154d000003",bridge: "vf0_3"
+		upf.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "512"
 			virtualbox.cpus = "1"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
