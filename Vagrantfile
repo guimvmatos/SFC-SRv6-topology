@@ -14,10 +14,9 @@ Vagrant.configure("2") do |config|
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
-                nfv1.vm.provision "shell", path: "config/ran.sh"
+                ran.vm.provision "shell", path: "config/ran.sh"
 	end
 
-Vagrant.configure("2") do |config|
 	# Node NFV1 configuration
 	config.vm.define "nfv1" do |nfv1|
 		nfv1.vm.box = "srouting/srv6-net-prog"
@@ -48,7 +47,6 @@ Vagrant.configure("2") do |config|
                 nfv2.vm.provision "shell", path: "config/config_nfv2.sh"
 	end
 
-	Vagrant.configure("2") do |config|
 	# Node UPF configuration
 	config.vm.define "upf" do |upf|
 		nfv1.vm.box = "srouting/srv6-net-prog"
@@ -61,7 +59,7 @@ Vagrant.configure("2") do |config|
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
-                nfv1.vm.provision "shell", path: "config/config_upf.sh"
+                upf.vm.provision "shell", path: "config/config_upf.sh"
 	end
 
 end
