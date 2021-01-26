@@ -9,8 +9,8 @@ Vagrant.configure("2") do |config|
                 ran.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		ran.vm.network "public_network", ip: "fc00::1", mac: "00154d000000",bridge: "vf0_0"
 		ran.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = "1024"
-			virtualbox.cpus = "2"
+			virtualbox.memory = "2048"
+			virtualbox.cpus = "4"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
@@ -54,8 +54,8 @@ Vagrant.configure("2") do |config|
                 upf.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		upf.vm.network "public_network", ip: "fc00::4", mac: "00154d000003",bridge: "vf0_3"
 		upf.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = "1024"
-			virtualbox.cpus = "2"
+			virtualbox.memory = "2048"
+			virtualbox.cpus = "4"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
