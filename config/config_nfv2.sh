@@ -25,7 +25,8 @@ sudo sysctl -w net.ipv6.conf.all.forwarding=1
 sudo sysctl -w net.ipv6.conf.eth1.seg6_require_hmac=-1
 sudo sysctl -w net.ipv6.conf.eth1.seg6_enabled=1
 sudo sysctl -p 
-sudo ip -6 route add fcf0:23::6006 encap seg6local action End.DT6 table 254 dev eth1
+#sudo ip -6 route add fcf0:23::6006 encap seg6local action End.DT6 table 254 dev eth1
+sudo ip -6 route add fcf0:23::6006 encap seg6local action End dev eth1
 sudo ip6tables -t mangle -A POSTROUTING -p icmpv6 --icmpv6-type redirect -j DROP
 
 
