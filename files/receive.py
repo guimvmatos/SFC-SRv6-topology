@@ -11,10 +11,8 @@ import time
 from scapy.all import sniff, send, sendp, hexdump, get_if_list, get_if_hwaddr, hexdump, sr1,sr
 from scapy.all import Packet, IPOption
 from scapy.all import ShortField, IntField, LongField, BitField, FieldListField, FieldLenField
-from scapy.all import IP, IPv6, TCP, UDP, Raw, Ether,IPv6ExtHdrRouting
+from scapy.all import IP, IPv6, TCP, UDP, Raw, Ether
 from scapy.layers.inet import _IPOption_HDR
-from scapy import all
-from gpt2 import *
 
 def get_if():
     ifs=get_if_list()
@@ -24,7 +22,7 @@ def get_if():
             iface=i
             break;
     if not iface:
-        print "Cannot find eth0 interface"
+        print "Cannot find eth1 interface"
         exit(1)
     return iface
 
@@ -44,6 +42,19 @@ class IPOption_MRI(IPOption):
 def handle_pkt(pkt):
     #if UDP in pkt and pkt[UDP].dport == 2152:
     #if UDP in pkt:
-    print "got a packet"    
+    print "got a packet"
     pkt.show2()
     #hexdump(pkt) 
+    main()
+
+def main():
+    ifaces = filter(lambda i: 'eth' in i, os.listdir('/sys/class/net/'))
+    iface = ifaces[0]
+    print "sniffing on %s" % iface
+    sys.stdout.flush()
+    sniff(iface = iface,
+          prn = lambda x: handle_pkt(x))
+    print "teste"
+
+if __name__ == '__main__':
+    main()
