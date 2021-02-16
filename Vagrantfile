@@ -16,9 +16,9 @@ Vagrant.configure("2") do |config|
 		end
                 ran.vm.provision "shell", path: "config/config_ran.sh"
 				ran.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
-				ran.vm.provision "file", source: "files/send_gtp", destination: "send_gtp"
-				ran.vm.provision "file", source: "files/send_gtp2", destination: "send_gtp2"
-				ran.vm.provision "file", source: "files/send_pkt", destination: "send_pkt"
+				ran.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp"
+				ran.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2"
+				ran.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt"
 	end
 
 	# Node NFV1 configuration
