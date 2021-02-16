@@ -1,5 +1,5 @@
 #!/bin/bash
-
+apt install scapy
 # Configure Interfaces
 sudo ip link set dev lo up
 sudo ip -6 addr add fc00::1/64 dev eth1

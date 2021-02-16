@@ -19,7 +19,7 @@ def main():
         print 'pass 2 arguments: <destination> "<message>"'
         exit(1)
 
-    iface = "vf0_0" 
+    iface = "eth1" 
 
     print "sending on interface %s" % (iface)
     pkt =  Ether(src='00:15:5d:00:00:00', dst='00:15:5d:00:00:03') / IPv6(src="fc00::1", dst="fc00::4") / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) / IPv6(src="fc00::1", dst="fc00::2") / UDP(dport=80,sport=35000) / sys.argv[1]
