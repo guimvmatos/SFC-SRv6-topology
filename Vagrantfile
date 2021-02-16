@@ -34,6 +34,7 @@ Vagrant.configure("2") do |config|
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
                 nfv1.vm.provision "shell", path: "config/config_nfv1.sh"
+				ran.vm.provision "file", source: "files/receive.py", destination: "receive."
 	end
 
 	# Node NFV2 configuration
