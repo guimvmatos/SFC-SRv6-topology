@@ -14,7 +14,7 @@ tar xvfz daq-2.0.7.tar.gz && cd daq-2.0.7
 make
 sudo make install
 
-
+apt install scapy
 # Configure Interfaces
 sudo ip link set dev lo up
 sudo ip -6 addr add fc00::2/64 dev eth1
