@@ -44,12 +44,12 @@ def handle_pkt(pkt):
     #if UDP in pkt:
     print "got a packet"
     pkt.show2()
-    #hexdump(pkt) 
+    hexdump(pkt) 
     main()
 
 def main():
     ifaces = filter(lambda i: 'eth' in i, os.listdir('/sys/class/net/'))
-    iface = ifaces[0]
+    iface = "eth1"
     print "sniffing on %s" % iface
     sys.stdout.flush()
     sniff(iface = iface,
