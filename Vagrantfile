@@ -18,7 +18,6 @@ Vagrant.configure("2") do |config|
 				ran.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
 				ran.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
 				ran.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
-				ran.vm.provision "file", source: "files/send_gtp3.py", destination: "send_gtp3.py"
 				ran.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				ran.vm.provision "file", source: "files/receive.py", destination: "receive.py"
 	end
@@ -39,7 +38,6 @@ Vagrant.configure("2") do |config|
 				nfv1.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
 				nfv1.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
 				nfv1.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
-				nfv1.vm.provision "file", source: "files/send_gtp3.py", destination: "send_gtp3.py"
 				nfv1.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				nfv1.vm.provision "file", source: "files/receive.py", destination: "receive.py"
 	end
@@ -60,7 +58,6 @@ Vagrant.configure("2") do |config|
 				nfv2.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
 				nfv2.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
 				nfv2.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
-				nfv2.vm.provision "file", source: "files/send_gtp3.py", destination: "send_gtp3.py"
 				nfv2.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				nfv2.vm.provision "file", source: "files/receive.py", destination: "receive.py"				
 	end
@@ -81,7 +78,6 @@ Vagrant.configure("2") do |config|
 				upf.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
 				upf.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
 				upf.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
-				upf.vm.provision "file", source: "files/send_gtp3.py", destination: "send_gtp3.py"
 				upf.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				upf.vm.provision "file", source: "files/receive.py", destination: "receive.py"				
 	end
