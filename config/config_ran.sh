@@ -16,6 +16,8 @@ sudo sysctl -w net.ipv6.conf.eth1.seg6_enabled=1
 sudo sysctl -p
 
 # para habilitar srv6 a partir deste host
-ip -6 route add fcf0:12::100 via fc00::2
+ip -6 route add fc00::100 via fc00::2
+#ip -6 route add fcf0:12::100 via fc00::2
 #ip -6 route add fc00::4 encap seg6 mode encap segs fcf0:12::100,fcf0:23::6006 dev eth1
-ip -6 route add fc00::4 encap seg6 mode inline segs fcf0:12::100,fcf0:23::6006 dev eth1
+#ip -6 route add fc00::4 encap seg6 mode inline segs fcf0:12::100,fcf0:23::6006 dev eth1
+ip -6 route add fc00::4 encap seg6 mode inline segs fc00::100,fc0::101 dev eth1
