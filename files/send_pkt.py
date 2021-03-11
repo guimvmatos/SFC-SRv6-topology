@@ -11,7 +11,7 @@ from scapy.all import Packet
 from scapy.all import Ether, IP, IPv6, UDP, TCP
 
 def main():
-    iface = "vf0_0" 
+    iface = "eth1" 
 
     print "sending on interface %s" % (iface)
     pkt =  Ether(src='00:15:4d:00:00:00', dst='00:15:4d:00:00:03')
