@@ -20,6 +20,7 @@ Vagrant.configure("2") do |config|
 				ran.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
 				ran.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				ran.vm.provision "file", source: "files/receive.py", destination: "receive.py"
+				ran.vm.provision "file", source: "files/receive2.py", destination: "receive2.py"
 	end
 
 	# Node NFV1 configuration
