@@ -21,7 +21,7 @@ def get_if():
     ifs=get_if_list()
     iface=None
     for i in get_if_list():
-        if "vf0_0" in i:
+        if "eth1" in i:
             iface=i
             break;
     if not iface:
@@ -43,7 +43,7 @@ class IPOption_MRI(IPOption):
                                    length_from=lambda pkt:pkt.count*4) ]
                                 
 def handle_pkt(pkt):
-    iface = "vf0_0"
+    iface = "eth1"
     #if UDP in pkt and pkt[UDP].dport == 2152:
     #if UDP in pkt:
     #if pkt.nh == 43:
@@ -51,7 +51,8 @@ def handle_pkt(pkt):
     #    pkt.addresses=["fc00::4","fc00::1","fc00::99"]
     
     #5G PACKET
-    pkt5g =  Ether(src='00:15:5d:00:00:00', dst='00:15:5d:00:00:03') / IPv6(src="fc00::1", dst="fc00::4") /  IPv6ExtHdrRouting(type = 4, segleft = 2, addresses=["fc00::4","fc00::101","fc00::100"]) / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14) 
+    pkt5g =  Ether(src='00:15:5d:00:00:00', dst='00:15:5d:00:00:03') / IPv6(src="fc00::1", dst="fc00::4") /  IPv6ExtHdrRouting(type = 4, segleft = 2, addresses=["fc00::4","fc00::101","fc00::100"]) / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14)
+
     #5G + USER DATA
     pkt2=pkt5g / pkt[IPv6]
     print "got a packet"
@@ -66,7 +67,7 @@ def handle_pkt(pkt):
 
 def main():
     ifaces = filter(lambda i: 'eth' in i, os.listdir('/sys/class/net/'))
-    iface = "vf0_0"
+    iface = "eth1"
     print "sniffing on %s" % iface
     sys.stdout.flush()
     sniff(iface = iface,
