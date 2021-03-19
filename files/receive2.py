@@ -50,19 +50,21 @@ def handle_pkt(pkt):
     #    print "wow, got a srv6 packet"
     #    pkt.addresses=["fc00::4","fc00::1","fc00::99"]
     
-    #5G PACKET
-    pkt5g =  Ether(src='00:15:5d:00:00:00', dst='00:15:5d:00:00:03') / IPv6(src="fc00::1", dst="fc00::4") /  IPv6ExtHdrRouting(type = 4, segleft = 2, addresses=["fc00::4","fc00::101","fc00::100"]) / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14)
 
-    #5G + USER DATA
-    pkt2=pkt5g / pkt[IPv6]
     print "got a packet"
     pkt.show2()
     hexdump(pkt) 
+
+    #5G PACKET
+    pkt5g =  Ether(src='00:15:5d:00:00:00', dst='00:15:5d:00:00:03') / IPv6(src="fc00::1", dst="fc00::4") /  IPv6ExtHdrRouting(type = 4, segleft = 2, addresses=["fc00::4","fc00::101","fc00::100"]) / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14)
+
+    #Full packet (5G + USER DATA)
+    pkt2=pkt5g / pkt[IPv6]
+    
     print "packet sent"
     pkt2.show2()
     hexdump(pkt2)
     sendp(pkt2, iface=iface, verbose=False)
-    sendp(pkt2, loop=0, count=1)
     main()
 
 def main():
