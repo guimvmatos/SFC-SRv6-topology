@@ -87,6 +87,7 @@ Vagrant.configure("2") do |config|
 	config.vm.define "dashServer" do |ds|
 		ds.vm.box = "srouting/srv6-net-prog"
 		ds.vm.box_version = "0.4.14"
+				upf.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		#ds.vm.hostname = "ds"
 		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000004", bridge: "vf0_4"
 		ds.vm.provider "virtualbox" do |virtualbox|
@@ -96,8 +97,9 @@ Vagrant.configure("2") do |config|
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
 				ds.vm.provision "shell", path: "config/dashServer/config_dashServer.sh"
-				ds.vm.provision "ansible" do |ansible| 
+			ds.vm.provision "ansible" do |ansible| 
 				ansible.playbook = "config/dashServer/dashServer-playbook.yml"
+			end
 	end
 
 	config.vm.define "clientVlc" do |vlc|
