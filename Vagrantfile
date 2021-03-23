@@ -87,7 +87,6 @@ Vagrant.configure("2") do |config|
 	config.vm.define "dashServer" do |ds|
 		ds.vm.box = "srouting/srv6-net-prog"
 		ds.vm.box_version = "0.4.14"
-				ds.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		#ds.vm.hostname = "ds"
 		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000004", bridge: "vf0_4"
 		ds.vm.provider "virtualbox" do |virtualbox|
