@@ -5,10 +5,10 @@
     command: cp /vagrant/config/dashServer/nginx.conf /usr/local/nginx/conf/
     become: yes
 
-#  - name: Start nginx webserver
-#    command: systemctl start nginx
-#    become: yes
+  - name: Start nginx webserver
+    command: systemctl start nginx.service
+    become: yes
     
   - name: Restart nginx webserver
-    command: systemctl reload nginx
+    command: systemctl reload nginx.service
     become: yes
