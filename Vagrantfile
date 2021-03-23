@@ -104,7 +104,6 @@ Vagrant.configure("2") do |config|
 	config.vm.define "clientVlc" do |vlc|
 		# Node DASH SERVER configuration
 		vlc.vm.box = "leandrocdealmeida/ubuntu-vlc"
-		vlc.vm.box_version = "0.4.14"
 		#vlc.vm.hostname = "vlc"
 		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000005", bridge: "vf0_5"
 		vlc.vm.provider "virtualbox" do |virtualbox|
