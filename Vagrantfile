@@ -83,4 +83,38 @@ Vagrant.configure("2") do |config|
 				upf.vm.provision "file", source: "files/receive.py", destination: "receive.py"				
 	end
 
+	# Node DASH SERVER configuration
+	config.vm.define "dashServer" do |ds|
+		ds.vm.box = "srouting/srv6-net-prog"
+		ds.vm.box_version = "0.4.14"
+		#ds.vm.hostname = "ds"
+		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000004", bridge: "vf0_4"
+		ds.vm.provider "virtualbox" do |virtualbox|
+			virtualbox.memory = 2048
+			virtualbox.cpus = 2
+			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
+			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
+		end
+				ds.vm.provision "shell", path: "config/dashServer/config_dashServer.sh"
+				ds.vm.provision "ansible" do |ansible| 
+				ansible.playbook = "config/dashServer/dashServer-playbook.yml"
+	end
+
+	config.vm.define "clientVlc" do |vlc|
+		# Node DASH SERVER configuration
+		vlc.vm.box = "srouting/srv6-net-prog"
+		vlc.vm.box_version = "0.4.14"
+		#vlc.vm.hostname = "vlc"
+		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000005", bridge: "vf0_5"
+		vlc.vm.provider "virtualbox" do |virtualbox|
+			virtualbox.memory = 2048
+			virtualbox.cpus = 2
+			virtualbox.customize ["modifyvm", :id, "--vrde", "on"]
+			virtualbox.customize ["modifyvm", :id, "--vrdeport", "19101"]
+			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
+			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
+		end
+				vlc.vm.provision "shell", path: "config/clientVlc/config_clientVlc.sh"
+	end
+
 end
