@@ -96,6 +96,11 @@ Vagrant.configure("2") do |config|
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
 				ds.vm.provision "shell", path: "config/dashServer/config_dashServer.sh"
+				ds.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
+				ds.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
+				ds.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
+				ds.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
+				ds.vm.provision "file", source: "files/receive.py", destination: "receive.py"
 			ds.vm.provision "ansible" do |ansible| 
 				ansible.playbook = "config/dashServer/dashServer-playbook.yml"
 			end
@@ -115,6 +120,11 @@ Vagrant.configure("2") do |config|
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
 				vlc.vm.provision "shell", path: "config/clientVlc/config_clientVlc.sh"
+				vlc.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
+				vlc.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
+				vlc.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
+				vlc.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
+				vlc.vm.provision "file", source: "files/receive.py", destination: "receive.py"
 	end
 
 end
