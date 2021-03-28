@@ -13,6 +13,7 @@ Vagrant.configure("2") do |config|
 			virtualbox.cpus = "4"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
+			virtualbox.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
 		end
                 ran.vm.provision "shell", path: "config/config_ran.sh"
 				ran.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
