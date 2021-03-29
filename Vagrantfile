@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 		ran.vm.box_version = "0.4.14"
                 ran.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		ran.vm.network "public_network", ip: "fc00::1", mac: "00154d000000",bridge: "vf0_0"
-		ran.vm.network "private_network", ip: "fc01::1",name: "vboxnet0"
+		ran.vm.network "private_network", ip: "fc01::1"
 		ran.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "2048"
 			virtualbox.cpus = "4"
@@ -116,17 +116,17 @@ Vagrant.configure("2") do |config|
 		#vlc.vm.hostname = "vlc"
 
 		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000005", bridge: "vf0_5"
-		vlc.vm.network "private_network", ip: "fc01::9",name: "vboxnet0"
+		vlc.vm.network "private_network", ip: "fc01::9"
 		vlc.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = 2048
 			virtualbox.cpus = 2
-			virtualbox.customize ["modifyvm", :id, "--vrde", "on"]
-			virtualbox.customize ["modifyvm", :id, "--vrdeport", "19101"]
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected3', 'on']
 			virtualbox.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
 			virtualbox.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
+			virtualbox.customize ["modifyvm", :id, "--vrde", "on"]
+			virtualbox.customize ["modifyvm", :id, "--vrdeport", "19101"]
 		end
 				vlc.vm.provision "shell", path: "config/clientVlc/config_clientVlc.sh"
 				vlc.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
