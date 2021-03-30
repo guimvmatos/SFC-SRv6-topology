@@ -24,7 +24,7 @@ Vagrant.configure("2") do |config|
 				ran.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
 				ran.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				ran.vm.provision "file", source: "files/receive.py", destination: "receive.py"
-				ran.vm.provision "file", source: "files/receive2.py", destination: "receive2.py"
+				ran.vm.provision "file", source: "files/ran.py", destination: "ran.py"
 	end
 
 	# Node NFV1 configuration
@@ -106,7 +106,7 @@ Vagrant.configure("2") do |config|
 				upf.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
 				upf.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				upf.vm.provision "file", source: "files/receive.py", destination: "receive.py"	
-				upf.vm.provision "file", source: "files/receive2.py", destination: "receive2.py"			
+				upf.vm.provision "file", source: "files/upf.py", destination: "upf.py"			
 	end
 
 	# Node DASH SERVER configuration
