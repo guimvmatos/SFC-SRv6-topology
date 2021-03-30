@@ -27,4 +27,4 @@ ip -6 route add fc00::100 via fc00::2
 #ip -6 route add fcf0:12::100 via fc00::2
 #ip -6 route add fc00::4 encap seg6 mode encap segs fcf0:12::100,fcf0:23::6006 dev eth1
 #ip -6 route add fc00::4 encap seg6 mode inline segs fcf0:12::100,fcf0:23::6006 dev eth1
-ip -6 route add fc00::4 encap seg6 mode inline segs fc00::100,fc0::101 dev eth1
+#ip -6 route add fc00::4 encap seg6 mode inline segs fc00::100,fc0::101 dev eth1

@@ -14,10 +14,10 @@ sudo ip -6 neigh add fc00::4 lladdr 00:15:4d:00:00:03 nud permanent dev eth1
 sudo ip -6 neigh add fc00::5 lladdr 00:15:4d:00:00:04 nud permanent dev eth1
 sudo ip -6 neigh add fc00::9 lladdr 00:15:4d:00:00:06 nud permanent dev eth1
 
-sudo ip -6 addr add fc20::9/64 dev eth2
+sudo ip -6 addr add fc20::8/64 dev eth2
 sudo ip link set dev eth2 up
 ip -6 route add fc00::9 via fc20::1
-#sudo ip -6 neigh add fc20::1 lladdr 08:00:27:10:45:e8 nud permanent dev eth2
+sudo ip -6 neigh add fc20::1 lladdr 08:00:27:dc:67:c4 nud permanent dev eth2
 
 sudo sysctl -w net.ipv6.conf.all.seg6_require_hmac=-1
 sudo sysctl -w net.ipv6.conf.all.accept_source_route=1
