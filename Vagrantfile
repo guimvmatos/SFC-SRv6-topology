@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 		ran.vm.box_version = "0.4.14"
                 ran.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		ran.vm.network "public_network", ip: "fc00::1", mac: "00154d000000",bridge: "vf0_0"
-		ran.vm.network "private_network", ip: "fc01::1", name: "vboxnet0"
+		ran.vm.network "private_network", ip: "fc10::1", name: "vboxnet0"
 		ran.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "2048"
 			virtualbox.cpus = "4"
@@ -67,12 +67,33 @@ Vagrant.configure("2") do |config|
 				nfv2.vm.provision "file", source: "files/receive.py", destination: "receive.py"				
 	end
 
+	# Node NFV3 configuration
+	config.vm.define "nfv3" do |nfv2|
+		nfv3.vm.box = "srouting/srv6-net-prog"
+		nfv3.vm.box_version = "0.4.14"
+                nfv3.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
+		nfv3.vm.network "public_network", ip: "fc00::4", mac: "00154d000003",bridge: "vf0_3"
+		nfv3.vm.provider "virtualbox" do |virtualbox|
+			virtualbox.memory = "512"
+			virtualbox.cpus = "1"
+			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
+			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
+		end
+            	nfv3.vm.provision "shell", path: "config/config_nfv3.sh"
+				nfv3.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
+				nfv3.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
+				nfv3.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
+				nfv3.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
+				nfv3.vm.provision "file", source: "files/receive.py", destination: "receive.py"				
+	end	
+
 	# Node UPF configuration
 	config.vm.define "upf" do |upf|
 		upf.vm.box = "srouting/srv6-net-prog"
 		upf.vm.box_version = "0.4.14"
                 upf.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
-		upf.vm.network "public_network", ip: "fc00::4", mac: "00154d000003",bridge: "vf0_3"
+		upf.vm.network "public_network", ip: "fc00::5", mac: "00154d000004",bridge: "vf0_4"
+		upf.vm.network "private_network", ip: "fc20::1", name: "vboxnet1"
 		upf.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "2048"
 			virtualbox.cpus = "4"
@@ -84,7 +105,8 @@ Vagrant.configure("2") do |config|
 				upf.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
 				upf.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
 				upf.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
-				upf.vm.provision "file", source: "files/receive.py", destination: "receive.py"				
+				upf.vm.provision "file", source: "files/receive.py", destination: "receive.py"	
+				upf.vm.provision "file", source: "files/receive2.py", destination: "receive2.py"			
 	end
 
 	# Node DASH SERVER configuration
@@ -92,7 +114,8 @@ Vagrant.configure("2") do |config|
 		ds.vm.box = "srouting/srv6-net-prog"
 		ds.vm.box_version = "0.4.14"
 		#ds.vm.hostname = "ds"
-		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000004", bridge: "vf0_4"
+		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000005", bridge: "vf0_5"
+		ds.vm.network "private_network", ip: "fc20::8", name: "vboxnet1"
 		ds.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = 2048
 			virtualbox.cpus = 2
@@ -111,12 +134,10 @@ Vagrant.configure("2") do |config|
 	end
 
 	config.vm.define "clientVlc" do |vlc|
-		# Node DASH SERVER configuration
 		vlc.vm.box = "leandrocdealmeida/ubuntu-vlc"
 		#vlc.vm.hostname = "vlc"
-
-		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000005", bridge: "vf0_5"
-		vlc.vm.network "private_network", ip: "fc01::9", name: "vboxnet0"
+		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000006", bridge: "vf0_6"
+		vlc.vm.network "private_network", ip: "fc10::9", name: "vboxnet0"
 		vlc.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = 2048
 			virtualbox.cpus = 2

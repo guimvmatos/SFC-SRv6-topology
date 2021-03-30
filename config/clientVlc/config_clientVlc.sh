@@ -16,8 +16,8 @@ sudo ip -6 neigh add fc00::8 lladdr 00:15:4d:00:00:04 nud permanent dev enp0s8
 
 sudo ip -6 addr add fc10::9/64 dev enp0s9
 sudo ip link set dev enp0s9 up
-#sudo ip -6 neigh add fc10::1 lladdr 08:00:27:10:45:e8 nud permanent dev enp0s9
 ip -6 route add fc00::8 via fc10::1
+#sudo ip -6 neigh add fc10::1 lladdr 08:00:27:10:45:e8 nud permanent dev enp0s9
 
 sudo sysctl -w net.ipv6.conf.all.seg6_require_hmac=-1
 sudo sysctl -w net.ipv6.conf.all.accept_source_route=1
