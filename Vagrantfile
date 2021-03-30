@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
 	end
 
 	# Node NFV3 configuration
-	config.vm.define "nfv3" do |nfv2|
+	config.vm.define "nfv3" do |nfv3|
 		nfv3.vm.box = "srouting/srv6-net-prog"
 		nfv3.vm.box_version = "0.4.14"
                 nfv3.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
