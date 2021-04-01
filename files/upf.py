@@ -72,13 +72,31 @@ def handle_pkt(pkt):
     sendp(pkt2, iface="eth1", verbose=False)
     main()
 
+def handle_pkt2(pkt):
+        iface = "eth1"
+
+    print "got a packet (ORIGINAL)"
+    pkt.show2()
+    hexdump(pkt) 
+
+    pkt2=pkt[UDP]
+    pkt3=pkt2[IPv6]
+
+    print "packet clean (PKT SENT)"
+    pkt3.show()
+    hexdump(pkt3)
+    sendp(pkt3, iface="eth2", verbose=False)
+    main()
+
 def main():
     ifaces = filter(lambda i: 'eth' in i, os.listdir('/sys/class/net/'))
     iface = "eth2"
     print "sniffing on %s" % iface
     sys.stdout.flush()
-    sniff(iface = iface,
+    sniff(iface = "eth2",
           prn = lambda x: handle_pkt(x))
+    sniff(iface = "eth1",
+          prn = lambda x: handle_pkt2(x))
     print "teste"
 
 if __name__ == '__main__':
