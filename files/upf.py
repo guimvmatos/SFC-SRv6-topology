@@ -60,7 +60,12 @@ def handle_pkt(pkt):
 
     #Full packet (5G + USER DATA)
     pkt2=pkt5g / pkt[IPv6]
-    
+
+    pkt3=pkt2[UDP]
+    pkt4=pkt3[IPv6]
+    print "packet clean"
+    pkt4.show()
+
     print "packet sent"
     pkt2.show2()
     hexdump(pkt2)
