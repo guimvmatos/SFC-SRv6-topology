@@ -42,14 +42,7 @@ class IPOption_MRI(IPOption):
                                    IntField("", 0),
                                    length_from=lambda pkt:pkt.count*4) ]
                                 
-def handle_pkt(pkt):
-    iface = "eth2"
-    #if UDP in pkt and pkt[UDP].dport == 2152:
-    #if UDP in pkt:
-    #if pkt.nh == 43:
-    #    print "wow, got a srv6 packet"
-    #    pkt.addresses=["fc00::1","fc00::1","fc00::99"]
-    
+def handle_pkt(pkt):  
 
     print "got a packet"
     pkt.show2()
@@ -61,31 +54,25 @@ def handle_pkt(pkt):
     #Full packet (5G + USER DATA)
     pkt2=pkt5g / pkt[IPv6]
 
-    pkt3=pkt2[UDP]
-    pkt4=pkt3[IPv6]
-    print "packet clean"
-    pkt4.show()
-
     print "packet sent"
     pkt2.show2()
     hexdump(pkt2)
     sendp(pkt2, iface="eth1", verbose=False)
     main()
 
-def handle_pkt2(pkt):
-    iface = "eth1"
+def handle_pkt2(pkt3):
 
     print "got a packet (ORIGINAL)"
-    pkt.show2()
-    hexdump(pkt) 
+    pkt3.show2()
+    hexdump(pkt2) 
 
-    pkt2=pkt[UDP]
-    pkt3=pkt2[IPv6]
+    pkt4=pkt3[UDP]
+    pkt5=pkt4[IPv6]
 
     print "packet clean (PKT SENT)"
-    pkt3.show()
-    hexdump(pkt3)
-    sendp(pkt3, iface="eth2", verbose=False)
+    pkt5.show()
+    hexdump(pkt5)
+    sendp(pkt5, iface="eth2", verbose=False)
     main()
 
 def main():
