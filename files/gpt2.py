@@ -367,7 +367,7 @@ bind_layers( UDP,	GTPHeader)
 #bind_layers( GTPHeader, GTPDeletePDPContextResponse)
 #Bind GTP-U
 bind_layers( UDP,GTP_U_Header)
-bind_layers( GTP_U_Header,IP)
+#bind_layers( GTP_U_Header,IP)
 bind_layers(GTP_U_Header,dl_pdu_session)
 bind_layers(GTP_U_Header,ul_pdu_session)
 bind_layers(dl_pdu_session,IP)

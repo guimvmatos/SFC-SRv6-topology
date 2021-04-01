@@ -73,7 +73,7 @@ def handle_pkt(pkt):
     main()
 
 def handle_pkt2(pkt):
-        iface = "eth1"
+    iface = "eth1"
 
     print "got a packet (ORIGINAL)"
     pkt.show2()
