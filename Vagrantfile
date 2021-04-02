@@ -106,7 +106,8 @@ Vagrant.configure("2") do |config|
 				upf.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
 				upf.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				upf.vm.provision "file", source: "files/receive.py", destination: "receive.py"	
-				upf.vm.provision "file", source: "files/upf.py", destination: "upf.py"			
+				upf.vm.provision "file", source: "files/upf.py", destination: "upf.py"
+				upf.vm.provision "file", source: "files/upftoue.py", destination: "upftoue.py"			
 	end
 
 	# Node DASH SERVER configuration
