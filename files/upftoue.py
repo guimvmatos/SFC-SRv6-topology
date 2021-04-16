@@ -48,6 +48,7 @@ def handle_pkt(pkt):
     print "got a packet (ORIGINAL)"
     pkt.show2()
     hexdump(pkt) 
+    
 
     pkt2=pkt[UDP]
     pkt3=pkt2[IPv6]
