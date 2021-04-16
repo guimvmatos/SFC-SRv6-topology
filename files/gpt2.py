@@ -8,7 +8,7 @@ import logging
 
 from scapy.packet import *
 from scapy.fields import *
-from scapy.layers.inet import IP,UDP
+from scapy.layers.inet import IP, UDP, IP, IPv6
 from scapy.all import *
 
 #   ToDo: 
@@ -367,12 +367,15 @@ bind_layers( UDP,	GTPHeader)
 #bind_layers( GTPHeader, GTPDeletePDPContextRequest)
 #bind_layers( GTPHeader, GTPDeletePDPContextResponse)
 #Bind GTP-U
-bind_layers( UDP,GTP_U_Header)
-#bind_layers( GTP_U_Header,IP)
+bind_layers(UDP,GTP_U_Header)
+bind_layers(GTP_U_Header,IP)
+bind_layers(GTP_U_Header,IPv6)
 bind_layers(GTP_U_Header,dl_pdu_session)
 bind_layers(GTP_U_Header,ul_pdu_session)
 bind_layers(dl_pdu_session,IP)
 bind_layers(ul_pdu_session,IP)
+bind_layers(dl_pdu_session,IPv6)
+bind_layers(ul_pdu_session,IPv6)
 
 if __name__ == "__main__":
 	interact(mydict=globals(), mybanner="Test GTP add-on v0.1")
