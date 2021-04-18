@@ -8,8 +8,9 @@ import logging
 
 from scapy.packet import *
 from scapy.fields import *
-from scapy.layers.inet import IP, UDP, IP, IPv6
-from scapy.all import *
+from scapy.layers.inet import _IPOption_HDR
+from scapy.all import IP, IPv6, TCP, UDP, Raw, Ether
+from scapy.all import all
 
 #   ToDo: 
 #   GTPv0/1
