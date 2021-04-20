@@ -17,6 +17,16 @@ from scapy.layers.inet import _IPOption_HDR
 from gpt2 import *
 from scapy import all
 
+class dl_pdu_session(Packet):
+        name = "DL PDU Session"
+	fields_desc = [ BitField("gtp_ext", 0,8),	
+			BitField("PDU_type",0,4),
+			BitField("Spare",0,5),
+			BitField("RQI",0,1),
+			BitField("QoSID",0,6),
+			BitField("padding",0,8),	
+			]
+
 def get_if():
     ifs=get_if_list()
     iface=None
