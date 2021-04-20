@@ -368,11 +368,11 @@ bind_layers( UDP,	GTPHeader)
 #bind_layers( GTPHeader, GTPDeletePDPContextRequest)
 #bind_layers( GTPHeader, GTPDeletePDPContextResponse)
 #Bind GTP-U
-bind_layers(UDP,GTP_U_Header)
+#bind_layers(UDP,GTP_U_Header) tester
 bind_layers(GTP_U_Header,IP)
 bind_layers(GTP_U_Header,IPv6)
-bind_layers(GTP_U_Header,dl_pdu_session)
-bind_layers(GTP_U_Header,ul_pdu_session)
+#bind_layers(GTP_U_Header,dl_pdu_session) testar
+#bind_layers(GTP_U_Header,ul_pdu_session) testar
 bind_layers(dl_pdu_session,IP)
 bind_layers(ul_pdu_session,IP)
 bind_layers(dl_pdu_session,IPv6)

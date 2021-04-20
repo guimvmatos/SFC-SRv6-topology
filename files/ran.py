@@ -26,6 +26,8 @@ class dl_pdu_session(Packet):
 			BitField("QoSID",0,6),
 			BitField("padding",0,8),	
 			]
+        def extract_padding(self, p):
+            return "", p
 
 def get_if():
     ifs=get_if_list()
@@ -62,8 +64,8 @@ def handle_pkt(pkt):
     
 
     print "got a packet"
-    pkt.show2()
-    hexdump(pkt) 
+    pkt.show()
+    #hexdump(pkt) 
 
     #5G PACKET
     pkt5g =  Ether(src='00:15:5d:00:00:00', dst='00:15:5d:00:00:04') / IPv6(src="fc00::1", dst="fc00::5") /  IPv6ExtHdrRouting(type = 4, segleft = 2, addresses=["fc00::5","fc00::101","fc00::100"]) / UDP (sport=64515, dport=2152 ) / GTP_U_Header(TEID=32, Reserved=0, E=1) / dl_pdu_session(gtp_ext=133,QoSID=14)
@@ -72,12 +74,16 @@ def handle_pkt(pkt):
     pkt2=pkt5g / pkt[IPv6]
     
     print "packet sent"
-    pkt2.show2()
-    hexdump(pkt2)
+    pkt2.show()
+    #hexdump(pkt2)
     sendp(pkt2, iface="eth1", verbose=False)
+    pkt3=pkt2[dl_pdu_session]
+    pkt4=pkt3[IPv6]
+    pkt4.show()
     main()
 
 def main():
+    bind_layers(GTP_U_Header, dl_pdu_session, E = 1 )
     ifaces = filter(lambda i: 'eth' in i, os.listdir('/sys/class/net/'))
     iface = "eth2"
     print "sniffing on %s" % iface

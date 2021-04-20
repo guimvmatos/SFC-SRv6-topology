@@ -17,6 +17,19 @@ from scapy.layers.inet import _IPOption_HDR
 from gpt2 import *
 from scapy import all
 
+
+class dl_pdu_session(Packet):
+        name = "DL PDU Session"
+        fields_desc = [ BitField("gtp_ext", 0,8),
+                        BitField("PDU_type",0,4),
+                        BitField("Spare",0,5),
+                        BitField("RQI",0,1),
+                        BitField("QoSID",0,6),
+                        BitField("padding",0,8),
+                        ]
+        def extract_padding(self, p):
+                return "", p
+
 def get_if():
     ifs=get_if_list()
     iface=None
@@ -46,20 +59,23 @@ class IPOption_MRI(IPOption):
 def handle_pkt(pkt):
 
     print "got a packet (ORIGINAL)"
-    pkt.show2()
-    hexdump(pkt) 
-    
-
-    pkt2=pkt[UDP]
-    pkt3=pkt2[IPv6]
+    pkt.show()
+    #hexdump(pkt) 
 
     print "packet clean (PKT SENT)"
-    pkt3.show()
-    hexdump(pkt3)
-    sendp(pkt3, iface="eth2", verbose=False)
+    data=pkt[Raw].load
+    hexdump(data)
+    teste1=dl_pdu_session(data)
+    teste1.show()
+    data2=teste1[Padding].load
+    teste2=IPv6(data2)
+    teste2.show()
+    #hexdump(pkt2)
+    #sendp(pkt2, iface="eth2", verbose=False)
     main()
 
 def main():
+    bind_layers(GTP_U_Header, dl_pdu_session, E = 1 )
     ifaces = filter(lambda i: 'eth' in i, os.listdir('/sys/class/net/'))
     iface = "eth1"
     print "sniffing on %s" % iface
