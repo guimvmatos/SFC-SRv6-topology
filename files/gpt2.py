@@ -10,7 +10,7 @@ from scapy.packet import *
 from scapy.fields import *
 from scapy.layers.inet import _IPOption_HDR
 from scapy.all import IP, IPv6, TCP, UDP, Raw, Ether
-from scapy.all import all
+from scapy.all import *
 
 #   ToDo: 
 #   GTPv0/1
@@ -61,8 +61,8 @@ CauseValues = {  0 : "Request IMSI",
            	 128 : "Request accepted",
            	 129 : "New PDP type due to network prefernce",
            	 130 : "New PDP type due to single address bearer only",
-            	 192 : "Non-exitent",
-			 133 : "dl_pdu_session":,
+        		192 : "Non-exitent",
+			 133 : "dl_pdu_session",
            	 193 : "Invalid message format",
            	 194 : "IMSI not known",
            	 195 : "MS is GPRS Detached",

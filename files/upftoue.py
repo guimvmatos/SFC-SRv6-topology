@@ -30,32 +30,6 @@ class dl_pdu_session(Packet):
         def extract_padding(self, p):
                 return "", p
 
-def get_if():
-    ifs=get_if_list()
-    iface=None
-    for i in get_if_list():
-        if "eth1" in i:
-            iface=i
-            break;
-    if not iface:
-        print "Cannot find eth1 interface"
-        exit(1)
-    return iface
-
-class IPOption_MRI(IPOption):
-    name = "MRI"
-    option = 31
-    fields_desc = [ _IPOption_HDR,
-                    FieldLenField("length", None, fmt="B",
-                                  length_of="swids",
-                                  adjust=lambda pkt,l:l+4),
-                    ShortField("count", 0),
-                    FieldListField("swids",
-                                   [],
-                                   IntField("", 0),
-                                   length_from=lambda pkt:pkt.count*4) ]
-                                
-
 def handle_pkt(pkt):
 
     print "got a packet (ORIGINAL)"
