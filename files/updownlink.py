@@ -31,8 +31,8 @@ class dl_pdu_session(Packet):
 
 
 def updownlink(pkt):
-    if IPv6 in pkt: #se tiver ipv6, é um pacote normal, vou trata-lo
-        if GTP_U_Header in pkt: #se tiver gtp, é core_out, vou tirar e enviar payload
+    if IPv6 in pkt: 
+        if GTP_U_Header in pkt:
             print "5G_CORE -> DN/UE"
             print "ORIGINAL PACKET"
             pkt.show()
