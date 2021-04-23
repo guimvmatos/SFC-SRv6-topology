@@ -65,7 +65,8 @@ def main():
     bind_layers(GTP_U_Header, dl_pdu_session, E = 1 )
     sys.stdout.flush()
     #sniff(iface=["eth1","eth2"], prn=lambda x: x.sniffed_on+": "+x.summary())
-    sniff(iface=["eth1","eth2"], prn=lambda x: updownlink(x))
+    #sniff(iface=["eth1","eth2"], prn=lambda x: updownlink(x))
+    sniff(prn=lambda x: updownlink(x))
     
 
 if __name__ == '__main__':
