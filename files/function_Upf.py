@@ -44,7 +44,7 @@ def updownlink(pkt):
             data2=temp[Padding].load
             pkt2=IPv6(data2)
             pkt2.show()
-            sendp(pkt2, iface="eth2", verbose=False)
+            sendp(pkt2, iface="eth1", verbose=False)
             main()
         else:        
             print "DN/UE -> 5G_CORE"
