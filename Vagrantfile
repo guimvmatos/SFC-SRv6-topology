@@ -142,8 +142,8 @@ Vagrant.configure("2") do |config|
 		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000006", bridge: "vf0_6"
 		vlc.vm.network "private_network", ip: "fc10::9", name: "vboxnet0"
 		vlc.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = 2048
-			virtualbox.cpus = 2
+			virtualbox.memory = 3072
+			virtualbox.cpus = 3
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected3', 'on']

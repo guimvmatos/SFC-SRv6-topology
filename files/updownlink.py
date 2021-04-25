@@ -32,7 +32,8 @@ class dl_pdu_session(Packet):
 
 def updownlink(pkt):
     if IPv6 in pkt: 
-        if GTP_U_Header in pkt:
+        #if GTP_U_Header in pkt:
+        if UDP in pkt and pkt[UDP].dport == 2152:
             print "5G_CORE -> DN/UE"
             print "ORIGINAL PACKET"
             pkt.show()
