@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 		ran.vm.box_version = "0.4.14"
                 ran.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		ran.vm.network "public_network", ip: "fc00::1", mac: "00154d000000",bridge: "vf0_0"
-		ran.vm.network "private_network", ip: "fc10::1", mac: "08:00:27:bb:bb:bb",name: "vboxnet0"
+		ran.vm.network "private_network", ip: "fc10::1", mac: "080027bbbbbb",name: "vboxnet0"
 		ran.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "2048"
 			virtualbox.cpus = "4"
@@ -94,7 +94,7 @@ Vagrant.configure("2") do |config|
 		upf.vm.box_version = "0.4.14"
                 upf.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		upf.vm.network "public_network", ip: "fc00::5", mac: "00154d000004",bridge: "vf0_4"
-		upf.vm.network "private_network", ip: "fc20::1", mac: "08:00:27:cc:cc:cc", name: "vboxnet1"
+		upf.vm.network "private_network", ip: "fc20::1", mac: "080027cccccc", name: "vboxnet1"
 		upf.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "2048"
 			virtualbox.cpus = "4"
@@ -118,7 +118,7 @@ Vagrant.configure("2") do |config|
 		ds.vm.box_version = "0.4.14"
 		#ds.vm.hostname = "ds"
 		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000005", bridge: "vf0_5"
-		ds.vm.network "private_network", ip: "fc20::8", mac: "08:00:27:dd:dd:dd",name: "vboxnet1"
+		ds.vm.network "private_network", ip: "fc20::8", mac: "080027dddddd",name: "vboxnet1"
 		ds.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = 2048
 			virtualbox.cpus = 2
@@ -140,7 +140,7 @@ Vagrant.configure("2") do |config|
 		vlc.vm.box = "leandrocdealmeida/ubuntu-vlc"
 		#vlc.vm.hostname = "vlc"
 		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000006", bridge: "vf0_6"
-		vlc.vm.network "private_network", ip: "fc10::9", mac: "08:00:27:aa:aa:aa",name: "vboxnet0"
+		vlc.vm.network "private_network", ip: "fc10::9", mac: "080027aaaaaa",name: "vboxnet0"
 		vlc.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = 3072
 			virtualbox.cpus = 3
