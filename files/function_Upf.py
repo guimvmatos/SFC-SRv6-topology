@@ -44,7 +44,8 @@ def updownlink(pkt):
             data2=temp[Padding].load
             pkt2=IPv6(data2)
             pkt2.show()
-            sendp(pkt2, iface="eth1", verbose=False)
+            sendp(pkt2, iface="eth2", verbose=False)
+            sys.stdout.flush()
             main()
         else:        
             print "DN/UE -> 5G_CORE"
@@ -60,14 +61,15 @@ def updownlink(pkt):
             print "5G FULL PACKET"
             pkt2.show()
             sendp(pkt2, iface="eth1", verbose=False)
+            sys.stdout.flush()
             main()
 
 def main():
     bind_layers(GTP_U_Header, dl_pdu_session, E = 1 )
-    sys.stdout.flush()
     #sniff(iface=["eth1","eth2"], prn=lambda x: x.sniffed_on+": "+x.summary())
     #sniff(iface=["eth1","eth2"], prn=lambda x: updownlink(x))
     sniff(prn=lambda x: updownlink(x))
+    sys.stdout.flush()
     
 
 if __name__ == '__main__':
