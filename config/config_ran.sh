@@ -15,9 +15,12 @@ sudo ip -6 neigh add fc00::4 lladdr 00:15:4d:00:00:03 nud permanent dev eth1 #nf
 sudo ip -6 neigh add fc00::5 lladdr 00:15:4d:00:00:04 nud permanent dev eth1 #upf
 
 sudo ip -6 neigh add fc00::8 lladdr 00:15:4d:00:00:05 nud permanent dev eth1 #dashServer
+sudo ip -6 neigh add fc20::2 lladdr 08:00:27:dd:dd:dd nud permanent dev eth1 #dashServer
 
 sudo ip -6 neigh add fc00::9 lladdr 00:15:4d:00:00:06 nud permanent dev eth1 #clientVlc
 sudo ip -6 neigh add fc10::2 lladdr 08:00:27:aa:aa:aa nud permanent dev eth2 #clientVlc
+
+sudo ip -6 route add fc20::2 via fc00::5 #dashServer
 
 sudo sysctl -w net.ipv6.conf.all.seg6_require_hmac=-1
 sudo sysctl -w net.ipv6.conf.all.accept_source_route=1
