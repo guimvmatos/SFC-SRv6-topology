@@ -45,7 +45,7 @@ def updownlink(pkt):
                 print "PAYLOAD PACKET"
                 data2=temp[Padding].load
                 pkt2=IPv6(data2)
-                pkt3=Ether() / pkt2
+                pkt3=Ether(dst="08:00:27:dd:dd:dd") / pkt2
                 pkt3.show()
                 sendp(pkt3, iface="eth2", verbose=False)
                 #sys.stdout.flush()
