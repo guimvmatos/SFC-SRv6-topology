@@ -34,25 +34,26 @@ def updownlink(pkt):
     if IPv6 in pkt: 
         #if GTP_U_Header in pkt:
         if UDP in pkt and pkt[UDP].dport == 2152:
-            print "5G_CORE -> DN/UE"
-            print "ORIGINAL PACKET"
-            pkt.show()
+            #print "5G_CORE -> DN/UE"
+            #print "ORIGINAL PACKET"
+            #pkt.show()
 
             #PAYLOAD PACKET
             data=pkt[Raw].load
             temp=dl_pdu_session(data)
             if temp[dl_pdu_session].Spare == 1:
-                print "PAYLOAD PACKET"
+                print "5G CORE TO CLIENT"
+                #print "PAYLOAD PACKET"
                 data2=temp[Padding].load
                 pkt2=IPv6(data2)
-                pkt3=Ether(dst="08:00:27:dd:dd:dd") / pkt2
+                pkt3=Ether(dst="08:00:27:aa:aa:aa", src="08:00:27:dd:dd:dd") / pkt2
                 pkt3.show()
                 sendp(pkt3, iface="eth2", verbose=False)
                 #sys.stdout.flush()
                 #main()'
         else:        
-            print "DN/UE -> 5G_CORE"
-            print "ORIGINAL PACKET"
+            print "CLIENT TO 5G_CORE"
+            #print "ORIGINAL PACKET"
             pkt.show()
 
             #5G PACKET CONSTRUCTION
@@ -61,8 +62,8 @@ def updownlink(pkt):
             #Full packet (5G + USER DATA)
             pkt2=pkt5g / pkt[IPv6]
             
-            print "5G FULL PACKET"
-            pkt2.show()
+            #print "5G FULL PACKET"
+            #pkt2.show()
             sendp(pkt2, iface="eth1", verbose=False)
             #sys.stdout.flush()
             #main()
