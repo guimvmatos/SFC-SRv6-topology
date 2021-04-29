@@ -6,7 +6,7 @@ sudo ip link set dev lo up
 
 sudo ip -6 addr add fc00::9/64 dev enp0s8 #link primário
 sudo ip link set dev enp0s8 up
-sudo ip link set enp0s9 mtu 10000
+sudo ip link set enp0s8 mtu 10000
 
 sudo ip -6 addr add fc10::2/64 dev enp0s9 #link secundário
 sudo ip link set dev enp0s9 up
