@@ -10,8 +10,8 @@ Vagrant.configure("2") do |config|
 		ran.vm.network "public_network", ip: "fc00::1", mac: "00154d000000",bridge: "vf0_0"
 		ran.vm.network "private_network", ip: "fc10::1", mac: "080027bbbbbb",name: "vboxnet0"
 		ran.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = "2048"
-			virtualbox.cpus = "4"
+			virtualbox.memory = "4096"
+			virtualbox.cpus = "3"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected3', 'on']
@@ -35,7 +35,7 @@ Vagrant.configure("2") do |config|
                 nfv1.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		nfv1.vm.network "public_network", ip: "fc00::2", mac: "00154d000001",bridge: "vf0_1"
 		nfv1.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = "512"
+			virtualbox.memory = "2048"
 			virtualbox.cpus = "1"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
@@ -55,7 +55,7 @@ Vagrant.configure("2") do |config|
                 nfv2.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 		nfv2.vm.network "public_network", ip: "fc00::3", mac: "00154d000002",bridge: "vf0_2"
 		nfv2.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = "512"
+			virtualbox.memory = "2048"
 			virtualbox.cpus = "1"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
@@ -96,8 +96,8 @@ Vagrant.configure("2") do |config|
 		upf.vm.network "public_network", ip: "fc00::5", mac: "00154d000004",bridge: "vf0_4"
 		upf.vm.network "private_network", ip: "fc20::1", mac: "080027cccccc", name: "vboxnet1"
 		upf.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = "2048"
-			virtualbox.cpus = "4"
+			virtualbox.memory = "4096"
+			virtualbox.cpus = "3"
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
@@ -120,8 +120,8 @@ Vagrant.configure("2") do |config|
 		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000005", bridge: "vf0_5"
 		ds.vm.network "private_network", ip: "fc20::8", mac: "080027dddddd",name: "vboxnet1"
 		ds.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = 2048
-			virtualbox.cpus = 2
+			virtualbox.memory = 4096
+			virtualbox.cpus = 3
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
 		end
@@ -142,7 +142,7 @@ Vagrant.configure("2") do |config|
 		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000006", bridge: "vf0_6"
 		vlc.vm.network "private_network", ip: "fc10::9", mac: "080027aaaaaa",name: "vboxnet0"
 		vlc.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = 3072
+			virtualbox.memory = 4096
 			virtualbox.cpus = 3
 			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
 			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
