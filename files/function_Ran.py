@@ -51,7 +51,7 @@ def updownlink(pkt):
                 sendp(pkt3, iface="eth2", verbose=False)
                 #sys.stdout.flush()
                 #main()'
-        else:        
+        else:
             print "CLIENT TO 5G_CORE"
             #print "ORIGINAL PACKET"
             pkt.show()
