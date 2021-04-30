@@ -40,13 +40,12 @@ def uplink(pkt):
 
         #Full packet (5G + USER DATA)
         pkt2=pkt5g / pkt[IPv6]
-        print(len(pkt2))
-        sendp(pkt2, iface="eth1", verbose=False)
+        sendp(pkt2, iface="eth1", verbose=False) 
 
 def main():
     bind_layers(GTP_U_Header, dl_pdu_session, E = 1 )
-    sniff(iface="eth2",filter="ip6 and host fc10::2", prn=lambda x: uplink(x))
-    # o filtro é endereço ipv6 src = client -> FC10::1? PQ DEU CERTO?
+    sniff(iface="eth2",filter="src fc10::2", prn=lambda x: uplink(x))
+    
     
 if __name__ == '__main__':
     main()

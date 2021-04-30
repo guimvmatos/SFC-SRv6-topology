@@ -35,7 +35,7 @@ def downlink(pkt):
         if UDP in pkt and pkt[UDP].dport == 2152:
             #PAYLOAD PACKET
             #pkt.show()
-            print "5G CORE TO CLIENT"
+            print "5G CORE TO DASH"
             data=pkt[Raw].load
             temp=dl_pdu_session(data)
             data2=temp[Padding].load
@@ -47,8 +47,7 @@ def downlink(pkt):
 
 def main():
     bind_layers(GTP_U_Header, dl_pdu_session, E = 1 )
-    sniff(iface="eth1",filter="ip6 and host fc20::1", prn=lambda x: downlink(x))
-    #o filtro deve ser o ipv6: dst = RAN
+    sniff(iface="eth1",filter="dst fc00::5", prn=lambda x: downlink(x))
 
 if __name__ == '__main__':
     main()

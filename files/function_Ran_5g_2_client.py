@@ -51,8 +51,7 @@ def downlink(pkt):
 
 def main():
     bind_layers(GTP_U_Header, dl_pdu_session, E = 1 )
-    sniff(iface="eth1",filter="ip6 and host fc10::1", prn=lambda x: downlink(x))
-    #o filtro deve ser o ipv6: dst = RAN
+    sniff(iface="eth1",filter="dst fc00::1", prn=lambda x: downlink(x))
 
 if __name__ == '__main__':
     main()
