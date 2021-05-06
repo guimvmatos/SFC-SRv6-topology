@@ -13,9 +13,9 @@ Vagrant.configure("2") do |config|
 		ran.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "4096"
 			virtualbox.cpus = "4"
-			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
-			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
-			virtualbox.customize ['modifyvm', :id, '--cableconnected3', 'on']
+			virtualbox.customize ["modifyvm", :id, "--cableconnected1", "on"]
+			virtualbox.customize ["modifyvm", :id, "--cableconnected2", "on"]
+			virtualbox.customize ["modifyvm", :id, "--cableconnected3", "on"]
 			virtualbox.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
 			virtualbox.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
 		end
@@ -101,8 +101,8 @@ Vagrant.configure("2") do |config|
 		upf.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "4096"
 			virtualbox.cpus = "4"
-			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
-			virtualbox.customize ['modifyvm', :id, '--cableconnected2', 'on']
+			virtualbox.customize ["modifyvm", :id, "--cableconnected1", "on"]
+			virtualbox.customize ["modifyvm", :id, "--cableconnected2", "on"]
 		end
                 upf.vm.provision "shell", path: "config/config_upf.sh"
 				upf.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
