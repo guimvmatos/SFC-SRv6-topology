@@ -33,6 +33,7 @@ sudo sysctl -w net.ipv6.conf.eth1.seg6_require_hmac=-1
 sudo sysctl -w net.ipv6.conf.eth1.seg6_enabled=1
 sudo sysctl -p 
 sudo ip -6 route add fcf0:23::6006 via fc00::3
+sudo ip -6 route add fcf0:23::9009 via fc00::4
 sudo ip -6 route add fcf0:12::100 encap seg6local action End dev eth1
 
 
