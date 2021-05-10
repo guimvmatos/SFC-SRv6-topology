@@ -120,7 +120,7 @@ Vagrant.configure("2") do |config|
 	# Node DASH SERVER configuration
 	config.vm.define "dashServer" do |ds|
 		ds.vm.box = "ubuntu/xenial64"
-		ds.vm.box_version = "0.4.14"
+		#ds.vm.box_version = "0.4.14"
 		#ds.vm.hostname = "ds"
 		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000005", bridge: "vf0_5"
 		ds.vm.network "private_network", ip: "fc20::2", mac: "080027dddddd",name: "vboxnet1"
