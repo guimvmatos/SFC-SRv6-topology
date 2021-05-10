@@ -6,11 +6,11 @@ sudo ip link set dev lo up
 
 sudo ip -6 addr add fc00::8/64 dev enp0s8 #link primário
 sudo ip link set dev enp0s8 up
-sudo ip link set enp0s8 mtu 10000
+sudo ip link set enp0s8 mtu 9000
 
 sudo ip -6 addr add fc20::2/64 dev enp0s9 #link secundário
 sudo ip link set dev enp0s9 up
-sudo ip link set enp0s9 mtu 8000
+sudo ip link set enp0s9 mtu 1500
 
 sudo ip -6 neigh add fc00::1 lladdr 00:15:4d:00:00:00 nud permanent dev enp0s8 #ran
 sudo ip -6 neigh add fc00::2 lladdr 00:15:4d:00:00:01 nud permanent dev enp0s8 #nfv1

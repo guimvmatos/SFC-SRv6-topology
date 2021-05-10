@@ -5,11 +5,11 @@ sudo ip link set dev lo up
 
 sudo ip -6 addr add fc00::5/64 dev eth1 #link primário
 sudo ip link set dev eth1 up
-sudo ip link set eth1 mtu 10000
+sudo ip link set eth1 mtu 9000
 
 sudo ip -6 addr add fc20::1/64 dev eth2 #link secundário
 sudo ip link set dev eth2 up
-sudo ip link set eth2 mtu 8000
+sudo ip link set eth2 mtu 9000
 
 sudo ip -6 neigh add fc00::1 lladdr 00:15:4d:00:00:00 nud permanent dev eth1 #ran
 sudo ip -6 neigh add fc00::2 lladdr 00:15:4d:00:00:01 nud permanent dev eth1 #nfv1

@@ -15,7 +15,7 @@ wget https://www.snort.org/downloads/snort/daq-2.0.7.tar.gz && tar xvfz daq-2.0.
 sudo ip link set dev lo up
 sudo ip -6 addr add fc00::4/64 dev eth1
 sudo ip link set dev eth1 up
-sudo ip link set eth1 mtu 10000
+sudo ip link set eth1 mtu 9000
 sudo ip -6 neigh add fc00::1 lladdr 00:15:4d:00:00:00 nud permanent dev eth1
 sudo ip -6 neigh add fc00::2 lladdr 00:15:4d:00:00:01 nud permanent dev eth1
 sudo ip -6 neigh add fc00::3 lladdr 00:15:4d:00:00:02 nud permanent dev eth1
