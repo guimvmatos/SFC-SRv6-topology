@@ -165,4 +165,22 @@ Vagrant.configure("2") do |config|
 				vlc.vm.provision "file", source: "files/receive.py", destination: "receive.py"
 	end
 
+	config.vm.define "clientNmap" do |nmap|
+		nmap.vm.box = "srouting/srv6-net-prog"
+		nmap.vm.box_version = "0.4.14"
+				nmap.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
+				nmap.vm.network "private_network", ip: "fc10::3", mac: "080027aaaaab",name: "vboxnet0"
+		nmap.vm.provider "virtualbox" do |virtualbox|
+			virtualbox.memory = "1024"
+			virtualbox.cpus = "1"
+			virtualbox.customize ['modifyvm', :id, '--cableconnected1', 'on']
+		end
+				nmap.vm.provision "shell", path: "config/config_clientNmap.sh"
+				nmap.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
+				nmap.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
+				nmap.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
+				nmap.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
+				nmap.vm.provision "file", source: "files/receive.py", destination: "receive.py"				
+	end	
+
 end
