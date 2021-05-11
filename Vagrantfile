@@ -154,8 +154,8 @@ Vagrant.configure("2") do |config|
 			virtualbox.customize ['modifyvm', :id, '--cableconnected3', 'on']
 			virtualbox.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
 			virtualbox.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
-			#virtualbox.customize ["modifyvm", :id, "--vrde", "on"]
-			#virtualbox.customize ["modifyvm", :id, "--vrdeport", "19101"]
+			virtualbox.customize ["modifyvm", :id, "--vrde", "on"]
+			virtualbox.customize ["modifyvm", :id, "--vrdeport", "19101"]
 		end
 				vlc.vm.provision "shell", path: "config/clientVlc/config_clientVlc.sh"
 				vlc.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
