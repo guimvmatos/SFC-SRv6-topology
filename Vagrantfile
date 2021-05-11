@@ -36,6 +36,7 @@ Vagrant.configure("2") do |config|
 		nfv1.vm.box = "srouting/srv6-net-prog"
 		nfv1.vm.box_version = "0.4.14"
                 nfv1.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
+		nfv1.vm.hostname = "NFV1"
 		nfv1.vm.network "public_network", ip: "fc00::2", mac: "00154d000001",bridge: "vf0_1"
 		nfv1.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "4096"
@@ -56,6 +57,7 @@ Vagrant.configure("2") do |config|
 		nfv2.vm.box = "srouting/srv6-net-prog"
 		nfv2.vm.box_version = "0.4.14"
                 nfv2.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
+		nfv2.vm.hostname = "NFV2"
 		nfv2.vm.network "public_network", ip: "fc00::3", mac: "00154d000002",bridge: "vf0_2"
 		nfv2.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "4096"
@@ -76,6 +78,7 @@ Vagrant.configure("2") do |config|
 		nfv3.vm.box = "srouting/srv6-net-prog"
 		nfv3.vm.box_version = "0.4.14"
                 nfv3.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
+		nfv3.vm.hostname = "NFV3"
 		nfv3.vm.network "public_network", ip: "fc00::4", mac: "00154d000003",bridge: "vf0_3"
 		nfv3.vm.provider "virtualbox" do |virtualbox|
 			virtualbox.memory = "4096"
@@ -121,7 +124,7 @@ Vagrant.configure("2") do |config|
 	config.vm.define "dashServer" do |ds|
 		ds.vm.box = "ubuntu/xenial64"
 		#ds.vm.box_version = "0.4.14"
-		#ds.vm.hostname = "ds"
+		ds.vm.hostname = "ds"
 		ds.vm.network "public_network", ip: "fc00::8",mac: "00154d000005", bridge: "vf0_5"
 		ds.vm.network "private_network", ip: "fc20::2", mac: "080027dddddd",name: "vboxnet1"
 		ds.vm.provider "virtualbox" do |virtualbox|
@@ -169,6 +172,7 @@ Vagrant.configure("2") do |config|
 	config.vm.define "clientNmap" do |nmap|
 		nmap.vm.box = "srouting/srv6-net-prog"
 		nmap.vm.box_version = "0.4.14"
+		nmap.vm.hostname = "NMAP"
 				nmap.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
 				nmap.vm.network "private_network", ip: "fc10::3", mac: "080027aaaaab",name: "vboxnet0"
 		nmap.vm.provider "virtualbox" do |virtualbox|
