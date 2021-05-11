@@ -143,7 +143,8 @@ Vagrant.configure("2") do |config|
 
 	config.vm.define "clientVlc" do |vlc|
 		vlc.vm.box = "leandrocdealmeida/ubuntu-vlc"
-		#vlc.vm.hostname = "vlc"
+		vlc.vm.box_version = "01"
+		vlc.vm.hostname = "vlc"
 		vlc.vm.network "public_network", ip: "fc00::9",mac: "00154d000006", bridge: "vf0_6"
 		vlc.vm.network "private_network", ip: "fc10::2", mac: "080027aaaaaa",name: "vboxnet0"
 		vlc.vm.provider "virtualbox" do |virtualbox|
