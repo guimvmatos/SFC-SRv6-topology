@@ -24,7 +24,7 @@ sudo ip -6 neigh add fc10::1 lladdr 08:00:27:bb:bb:bb nud permanent dev enp0s9 #
 sudo ip -6 neigh add fc20::2 lladdr 08:00:27:dd:dd:dd nud permanent dev enp0s9 #dashServer
 
 #sudo ip -6 route add fc00::8 via fc10::1 #rota para dashServer saindo de link secundário direto pra RAN
-sudo ip -6 route add fc20::2 via fc10::1 #rota para dashServer saindo de link secundário direto pra RAN
+sudo ip -6 route add fc20::2 dev enp0s9 #rota para dashServer saindo de link secundário direto pra RAN
 
 sudo sysctl -w net.ipv6.conf.all.seg6_require_hmac=-1
 sudo sysctl -w net.ipv6.conf.all.accept_source_route=1
