@@ -13,12 +13,12 @@ wget https://www.snort.org/downloads/snort/daq-2.0.7.tar.gz && tar xvfz daq-2.0.
 
 # Configure Interfaces
 sudo ip link set dev lo up
-sudo ip -6 addr add fc00::3/64 dev eth1
+sudo ip -6 addr add fc00::4/64 dev eth1
 sudo ip link set dev eth1 up
 sudo ip link set eth1 mtu 9000
 sudo ip -6 neigh add fc00::1 lladdr 00:15:4d:00:00:00 nud permanent dev eth1
 sudo ip -6 neigh add fc00::2 lladdr 00:15:4d:00:00:01 nud permanent dev eth1
-sudo ip -6 neigh add fc00::4 lladdr 00:15:4d:00:00:03 nud permanent dev eth1
+sudo ip -6 neigh add fc00::3 lladdr 00:15:4d:00:00:02 nud permanent dev eth1
 sudo ip -6 neigh add fc00::5 lladdr 00:15:4d:00:00:04 nud permanent dev eth1
 sudo ip -6 neigh add fc00::8 lladdr 00:15:4d:00:00:05 nud permanent dev eth1
 sudo ip -6 neigh add fc00::9 lladdr 00:15:4d:00:00:06 nud permanent dev eth1
@@ -29,8 +29,8 @@ sudo sysctl -w net.ipv6.conf.eth1.seg6_require_hmac=-1
 sudo sysctl -w net.ipv6.conf.eth1.seg6_enabled=1
 sudo sysctl -p 
 #sudo ip -6 route add fcf0:23::6006 encap seg6local action End.DT6 table 254 dev eth1
-sudo ip -6 route add fcf0:23::6006 encap seg6local action End dev eth1
-sudo ip6tables -t mangle -A POSTROUTING -p icmpv6 --icmpv6-type redirect -j DROP
+#sudo ip -6 route add fcf0:23::6006 encap seg6local action End dev eth1
+#sudo ip6tables -t mangle -A POSTROUTING -p icmpv6 --icmpv6-type redirect -j DROP
 
 
 
