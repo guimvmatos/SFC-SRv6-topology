@@ -2,35 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-'''	
-	# Node RAN configuration
-	config.vm.define "ran" do |ran|
-		ran.vm.box = "srouting/srv6-net-prog"
-		ran.vm.box_version = "0.4.14"
-                ran.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
-		ran.vm.network "public_network", ip: "fc00::1", mac: "00154d000000",bridge: "vf0_0"
-		ran.vm.network "private_network", ip: "fc10::1", mac: "080027bbbbbb",name: "vboxnet0"
-		ran.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = "4096"
-			virtualbox.cpus = "4"
-			virtualbox.customize ["modifyvm", :id, "--cableconnected1", "on"]
-			virtualbox.customize ["modifyvm", :id, "--cableconnected2", "on"]
-			virtualbox.customize ["modifyvm", :id, "--cableconnected3", "on"]
-			virtualbox.customize ["modifyvm", :id, "--nicpromisc2", "allow-all"]
-			virtualbox.customize ["modifyvm", :id, "--nicpromisc3", "allow-all"]
-		end
-                ran.vm.provision "shell", path: "config/config_ran.sh"
-				ran.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
-				ran.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
-				ran.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
-				ran.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
-				ran.vm.provision "file", source: "files/receive.py", destination: "receive.py"
-				ran.vm.provision "file", source: "files/ran.py", destination: "ran.py"
-				ran.vm.provision "file", source: "files/function_Ran.py", destination: "function_Ran.py"
-				ran.vm.provision "file", source: "files/function_Ran_5g_2_client.py", destination: "function_Ran_5g_2_client.py"
-				ran.vm.provision "file", source: "files/function_Ran_client_2_5g.py", destination: "function_Ran_client_2_5g.py"
-	end
-'''
+
 	# Node NFV1 configuration
 	config.vm.define "nfv1" do |nfv1|
 		nfv1.vm.box = "srouting/srv6-net-prog"
@@ -93,33 +65,7 @@ Vagrant.configure("2") do |config|
 				nfv3.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
 				nfv3.vm.provision "file", source: "files/receive.py", destination: "receive.py"				
 	end	
-'''
-	# Node UPF configuration
-	config.vm.define "upf" do |upf|
-		upf.vm.box = "srouting/srv6-net-prog"
-		upf.vm.box_version = "0.4.14"
-                upf.vm.synced_folder(".", nil, :disabled => true, :id => "vagrant-root")
-		upf.vm.network "public_network", ip: "fc00::5", mac: "00154d000004",bridge: "vf0_4"
-		upf.vm.network "private_network", ip: "fc20::1", mac: "080027cccccc", name: "vboxnet1"
-		upf.vm.provider "virtualbox" do |virtualbox|
-			virtualbox.memory = "4096"
-			virtualbox.cpus = "4"
-			virtualbox.customize ["modifyvm", :id, "--cableconnected1", "on"]
-			virtualbox.customize ["modifyvm", :id, "--cableconnected2", "on"]
-		end
-                upf.vm.provision "shell", path: "config/config_upf.sh"
-				upf.vm.provision "file", source: "files/gpt2.py", destination: "gpt2.py"
-				upf.vm.provision "file", source: "files/send_gtp.py", destination: "send_gtp.py"
-				upf.vm.provision "file", source: "files/send_gtp2.py", destination: "send_gtp2.py"
-				upf.vm.provision "file", source: "files/send_pkt.py", destination: "send_pkt.py"
-				upf.vm.provision "file", source: "files/receive.py", destination: "receive.py"	
-				upf.vm.provision "file", source: "files/upf.py", destination: "upf.py"
-				upf.vm.provision "file", source: "files/upftoue.py", destination: "upftoue.py"
-				upf.vm.provision "file", source: "files/function_Upf.py", destination: "function_Upf.py"	
-				upf.vm.provision "file", source: "files/function_Upf_5g_2_dash.py", destination: "function_Upf_5g_2_dash.py"
-				upf.vm.provision "file", source: "files/function_Upf_dash_2_5g.py", destination: "function_Upf_dash_2_5g.py"	
-	end
-'''
+
 	# Node DASH SERVER configuration
 	config.vm.define "dashServer" do |ds|
 		ds.vm.box = "ubuntu/xenial64"
