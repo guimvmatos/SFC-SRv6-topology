@@ -25,5 +25,3 @@ $ cd Snort-SegmentRouting/
 $ vagrant up 
 $ vagrant provision
 ```
-
-Using [iperf](https://iperf.fr/), we generate UDP traffic from Site A destined to Site with different destination port numbers (5000 and 6000 in this demo).
